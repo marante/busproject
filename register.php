@@ -42,7 +42,7 @@ function NewUser()
    }
    else
    {
-       echo "You fucked up along time ago";
+       echo "You fucked up a long time ago";
    }
  }
 
@@ -73,8 +73,49 @@ function SignUp()
 }
 }
   if(isset($_POST['submit']))
-{
-  SignUp();
-}
+  {
+    $close = false;
+    
+    if(empty($_POST["firstname"])) 
+    {
+      $nameerror = "Du måste fylla i ditt förnamn!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    if(empty($_POST["lastname"])) 
+    {
+      $nameerror = "Du måste fylla i ditt efternamn!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    if(empty($_POST["email"])) 
+    {
+      $nameerror = "Du måste fylla i din e-mail!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    if(empty($_POST["password"])) 
+    {
+      $nameerror = "Du måste fylla i ett lösenord!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    if(empty($_POST["pnumber"])) 
+    {
+      $nameerror = "Du måste fylla i ditt personnummer!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    if(empty($_POST["age"])) 
+    {
+      $nameerror = "Du måste fylla i din ålder!"; //Detta funkar inte än, kanske något som ska fixas?
+      $close = true;
+    }
+    
+    if($close == true) {
+       echo ("<script type='text/javascript'>
+       window.alert('Din registrering lyckades inte, du måste fylla i alla fält!');
+       window.location = 'index.html';
+       </script>");
+      exit();
+    } else {
+      SignUp();
+    }
+  }
 $mysqli->close();
 ?>

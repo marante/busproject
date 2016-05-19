@@ -73,21 +73,27 @@
           <form role="form" method="POST" action="register.php">
             <div class="form-group">
               <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Förnamn">
+              <span class="error"><?php echo $fnameError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Efternamn">
+              <span class="error"><?php echo $lnameError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="email" id="email" class="form-control" name="email" placeholder="Email">
+              <span class="error"><?php echo $emailError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="password" id="password" class="form-control" name="password" placeholder="Lösenord">
+              <span class="error"><?php echo $passwordError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="number" id="pnumber" class="form-control" name="pnumber" placeholder="Personnummer">
+              <span class="error"><?php echo $pnumberError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="number" id="age" class="form-control" name="age" placeholder="Ålder">
+              <span class="error"><?php echo $ageError;?></span> <!-- Funkar inte än, kanske ska fixas? -->
             </div>
             <div class="form-group">
               <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Submit">
