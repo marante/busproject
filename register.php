@@ -42,7 +42,11 @@ function NewUser()
    }
    else
    {
-       echo "You fucked up a long time ago";
+       echo ("<script type='text/javascript'>
+       window.alert('Oj, det blev något fel i registreringen! Försök igen');
+       window.location = 'index.html';
+       </script>");
+      exit();
    }
  }
 
@@ -67,7 +71,11 @@ function SignUp()
   }
    else
   {
-    echo "SORRY...YOU ARE ALREADY REGISTERED USER...";
+    echo ("<script type='text/javascript'>
+       window.alert('Denna mejladdressen har redan använts!');
+       window.location = 'index.html';
+       </script>");
+      exit();
   }
 
 }
