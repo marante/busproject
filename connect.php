@@ -10,7 +10,7 @@ if ($mysqli->connect_errno)
 }
 else
 {
-    printf("Access granted: %s\n", $mysqli->connect_error);
+    //printf("Access granted: %s\n", $mysqli->connect_error);
 }
 
 ?>

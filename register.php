@@ -31,10 +31,14 @@ function NewUser()
                             VALUES (?,?,?,?,?,?)");
    $stmt->bind_param('ssssss', $firstname, $lastname, $pnumber, $age, $email, $password);
    $stmt->execute();
-   printf ("New Record has id %d.\n", $mysqli->insert_id);
+   //printf ("New Record has id %d.\n", $mysqli->insert_id);
    if ($mysqli)
    {
-       echo "Record successfully inserted";
+       echo ("<script type='text/javascript'>
+       window.alert('Ditt konto har skapats, du kan nu logga in!');
+       window.location = 'index.html';
+       </script>");
+       exit();
    }
    else
    {
