@@ -58,6 +58,7 @@ function SignUp()
 
   if($countRows < 1)
   {
+    $stmt->close();
     NewUser();
   }
    else
@@ -66,7 +67,6 @@ function SignUp()
   }
 
 }
-    $stmt->close();
 }
   if(isset($_POST['submit']))
 {
