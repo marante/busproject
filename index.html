@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href="css/styles.css" rel="stylesheet" >
+<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<title>Välkommen till reseföretaget</title>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <a id="logo" href="index.html"><img src="images/logo1.png" /></a>
+        <li><a href="book.html">Boka</a></li>
+        <li><a href="#">Resemål</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main page -->
+  <!-- Top part -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-0">
+          <div class="transbox">
+            <h2>Välkommen till Blomstermåla Buss. </h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta varius tincidunt. Donec varius purus id rutrum fermentum.
+              Nunc vel erat posuere sapien vehicula maximus interdum sed purus. Proin commodo libero sit amet orci semper elementum.
+              Ut ornare neque enim, quis cursus turpis laoreet eu. Vestibulum id orci ornare, porttitor ex vel, dapibus metus. Cras in dui magna.
+            </p>
+          </div>
+      </div>
+
+      <div class="col-xs-4 col-xs-offset-1 login">
+         <div class="panel panel-default panelbox">
+          <div class="panel-body">
+            <h3>Logga in </h3>
+
+            <form method="post" action="login.php">
+              <div class="form-group">
+                <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Email">
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control form-control-sm" id="pwd" name="pwd" placeholder="Lösenord">
+              </div>
+              <button type="submit" class="btn btn-primary">Logga in</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom part -->
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-0">
+          <div class="transbox">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta varius tincidunt. Donec varius purus id rutrum fermentum.
+              Nunc vel erat posuere sapien vehicula maximus interdum sed purus. Proin commodo libero sit amet orci semper elementum.
+              Ut ornare neque enim, quis cursus turpis laoreet eu. Vestibulum id orci ornare, porttitor ex vel, dapibus metus. Cras in dui magna.
+            </p>
+          </div>
+      </div>
+    <div class="col-xs-4 col-xs-offset-1 register">
+    <div class="panel panel-default panelbox">
+        <div class="panel-body">
+          <h3>Registrera dig</h3>
+          <form role="form" method="POST" action="register.php">
+            <div class="form-group">
+              <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Förnamn">
+            </div>
+            <div class="form-group">
+              <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Efternamn">
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" id="password" class="form-control" name="password" placeholder="Lösenord">
+            </div>
+            <div class="form-group">
+              <input type="number" id="pnumber" class="form-control" name="pnumber" placeholder="Personnummer">
+            </div>
+            <div class="form-group">
+              <input type="number" id="age" class="form-control" name="age" placeholder="Ålder">
+            </div>
+            <div class="form-group">
+              <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
