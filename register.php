@@ -12,6 +12,8 @@ if ($mysqli->connect_errno) {
 
 function NewUser()
 {
+   global $email;
+  
    $firstname = $_POST['firstname'];
    $lastname = $_POST['lastname'];
    $pnumber = $_POST['pnumber'];
@@ -45,20 +47,18 @@ function SignUp()
     if(!empty($_POST['email']))
   {
   global $mysqli;
-  global $email;
-  global $password;
-  $query = ("SELECT * FROM persons WHERE email = ? AND pwd = ?");
+  $query = ("SELECT * FROM persons WHERE email = ?");
   if ($stmt = $mysqli->prepare($query))
   {
-        $stmt->bind_param('ss', $email, $password);
+        $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
+        $stmt->store_result();
         $countRows = $stmt->num_rows;
-        // $stmt->bind_result($person_id, $firstname, $lastname, $pnumber, $age, $email, $pwd);
+        $stmt->close();
   }
 
   if($countRows < 1)
   {
-    $stmt->close();
     NewUser();
   }
    else
