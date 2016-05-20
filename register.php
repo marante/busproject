@@ -5,15 +5,10 @@ error_reporting( E_ALL );
 
 include('connect.php');
 
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-}
-
 function NewUser()
 {
    global $email;
-  
+
    $firstname = $_POST['firstname'];
    $lastname = $_POST['lastname'];
    $pnumber = $_POST['pnumber'];
@@ -83,38 +78,38 @@ function SignUp()
   if(isset($_POST['submit']))
   {
     $close = false;
-    
-    if(empty($_POST["firstname"])) 
+
+    if(empty($_POST["firstname"]))
     {
       $nameerror = "Du måste fylla i ditt förnamn!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    if(empty($_POST["lastname"])) 
+    if(empty($_POST["lastname"]))
     {
       $nameerror = "Du måste fylla i ditt efternamn!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    if(empty($_POST["email"])) 
+    if(empty($_POST["email"]))
     {
       $nameerror = "Du måste fylla i din e-mail!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    if(empty($_POST["password"])) 
+    if(empty($_POST["password"]))
     {
       $nameerror = "Du måste fylla i ett lösenord!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    if(empty($_POST["pnumber"])) 
+    if(empty($_POST["pnumber"]))
     {
       $nameerror = "Du måste fylla i ditt personnummer!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    if(empty($_POST["age"])) 
+    if(empty($_POST["age"]))
     {
       $nameerror = "Du måste fylla i din ålder!"; //Detta funkar inte än, kanske något som ska fixas?
       $close = true;
     }
-    
+
     if($close == true) {
        echo ("<script type='text/javascript'>
        window.alert('Din registrering lyckades inte, du måste fylla i alla fält!');
