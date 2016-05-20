@@ -8,6 +8,14 @@ body {
   text-align: center;
 }
 
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 .left {
   text-align: left;
 }

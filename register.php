@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ini_set("display_errors", true);
 error_reporting( E_ALL );
@@ -29,17 +30,15 @@ function NewUser()
    //printf ("New Record has id %d.\n", $mysqli->insert_id);
    if ($mysqli)
    {
-       echo ("<script type='text/javascript'>
-       window.alert('Ditt konto har skapats, du kan nu logga in!');
-       window.location = 'index.html';
-       </script>");
-       exit();
+     $_SESSION['accountCreated'] = "Ditt konto har skapats, du kan nu logga in!";
+     header("Location:index.php");
+     exit();
    }
    else
    {
        echo ("<script type='text/javascript'>
        window.alert('Oj, det blev något fel i registreringen! Försök igen');
-       window.location = 'index.html';
+       window.location = 'index.php';
        </script>");
       exit();
    }
@@ -59,18 +58,20 @@ function SignUp()
         $countRows = $stmt->num_rows;
         $stmt->close();
   }
-
+  
   if($countRows < 1)
   {
+    $_SESSION['emailExistsError'] = "";
+    $_SESSION['message'] = "success";
     NewUser();
   }
    else
   {
-    echo ("<script type='text/javascript'>
-       window.alert('Denna mejladdressen har redan använts!');
-       window.location = 'index.html';
-       </script>");
-      exit();
+    $_SESSION['accountCreated'] = "";
+    $_SESSION['emailExistsError'] = "Denna mejladdressen har redan använts!";
+    $_SESSION['message'] = "error";
+    header("Location:index.php");
+    exit();
   }
 
 }
@@ -81,40 +82,49 @@ function SignUp()
 
     if(empty($_POST["firstname"]))
     {
-      $nameerror = "Du måste fylla i ditt förnamn!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['fnameError'] = "Du måste fylla i ditt förnamn!"; 
       $close = true;
+    } else {
+      $_SESSION['fnameError'] = ""; 
     }
     if(empty($_POST["lastname"]))
     {
-      $nameerror = "Du måste fylla i ditt efternamn!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['lnameError'] = "Du måste fylla i ditt efternamn!"; 
       $close = true;
+    } else {
+      $_SESSION['lnameError'] = ""; 
     }
     if(empty($_POST["email"]))
     {
-      $nameerror = "Du måste fylla i din e-mail!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['emailError'] = "Du måste fylla i din e-mail!"; 
       $close = true;
+    } else {
+      $_SESSION['emailError'] = ""; 
     }
     if(empty($_POST["password"]))
     {
-      $nameerror = "Du måste fylla i ett lösenord!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['passwordError'] = "Du måste fylla i ett lösenord!";
       $close = true;
+    } else {
+      $_SESSION['passwordError'] = ""; 
     }
     if(empty($_POST["pnumber"]))
     {
-      $nameerror = "Du måste fylla i ditt personnummer!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['pnumberError'] = "Du måste fylla i ditt personnummer!"; 
       $close = true;
+    } else {
+      $_SESSION['pnumberError'] = ""; 
     }
     if(empty($_POST["age"]))
     {
-      $nameerror = "Du måste fylla i din ålder!"; //Detta funkar inte än, kanske något som ska fixas?
+      $_SESSION['ageError'] = "Du måste fylla i din ålder!"; 
       $close = true;
+    } else {
+      $_SESSION['ageError'] = "";
     }
 
     if($close == true) {
-       echo ("<script type='text/javascript'>
-       window.alert('Din registrering lyckades inte, du måste fylla i alla fält!');
-       window.location = 'index.html';
-       </script>");
+      header("Location:index.php");
       exit();
     } else {
       SignUp();

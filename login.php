@@ -21,6 +21,8 @@ if(isset($_POST['submit'])) {
     }
 
     if(password_verify($password, $pwdFromDB)) {
+        $_SESSION['valid'] = true;
+        $_SESSION['email'] = $email;
         echo ("<script type='text/javascript'>
         window.alert('Du har loggat in!');
         window.location = 'index.html';
@@ -28,7 +30,7 @@ if(isset($_POST['submit'])) {
         exit();
     } else {
         echo ("<script type='text/javascript'>
-        window.alert('Fel användarnamn eller lösenord! $pwdFromDB ');
+        window.alert('Fel användarnamn eller lösenord!');
         window.location = 'index.html';
         </script>");
         exit();
