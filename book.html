@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
   <!-- Navigation Bar -->
   <nav class="navbar navbar-inverse">
     <ul class="nav navbar-nav">
-        <a id="logo" href="index.html"><img src="images/logo1.png" /></a>
+        <a id="logo" href="index.php"><img src="images/logo1.png" /></a>
         <li><a href="book.html">Boka</a></li>
         <li><a href="#">Resemål</a></li>
     </ul>
@@ -33,20 +34,32 @@
             <div class="form-group">
               <label for="sel1">Från</label>
               <select class="form-control" id="sel1">
-                <option>Malmö</option>
+                <option></option>
+                <option>Köpenhamn</option>
                 <option>Stockholm</option>
-                <option>Belgrad</option>
+                <option>Berlin</option>
                 <option>Lissabon</option>
+                <option>Prag</option>
+                <option>Madrid</option>
+                <option>Rom</option>
+                <option>Amsterdam</option>
+                <option>Paris</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="sel1">Till</label>
               <select class="form-control" id="sel2">
-                <option>Berlin</option>
-                <option>Somalien</option>
-                <option>Seoul</option>
-                <option>Kapstaden</option>
+                  <option></option>
+                  <option>Köpenhamn</option>
+                  <option>Stockholm</option>
+                  <option>Berlin</option>
+                  <option>Lissabon</option>
+                  <option>Prag</option>
+                  <option>Madrid</option>
+                  <option>Rom</option>
+                  <option>Amsterdam</option>
+                  <option>Paris</option>
               </select>
             </div>
 
@@ -71,7 +84,7 @@
 <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker({
-                    locale: 'en'
+                    locale: 'sv'
                 });
             });
         </script>

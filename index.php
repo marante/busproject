@@ -17,7 +17,7 @@ session_start();
   <!-- Navigation Bar -->
   <nav class="navbar navbar-inverse">
     <ul class="nav navbar-nav">
-        <a id="logo" href="index.html"><img src="images/logo1.png" /></a>
+        <a id="logo" href="index.php"><img src="images/logo1.png" /></a>
         <li><a href="book.html">Boka</a></li>
         <li><a href="#">Resemål</a></li>
     </ul>
@@ -79,9 +79,11 @@ session_start();
               <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Förnamn">
               <span class="error">
               <?php
+              $fnameError = "";
               $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
               if(isset($_SESSION['fnameError'])) {
-                $fnameError = $_SESSION['fnameError']; 
+                $fnameError = $_SESSION['fnameError'];
+                unset($_SESSION['fnameError']);
               }
               echo $fnameError;
               ?>
@@ -93,7 +95,8 @@ session_start();
               <?php
               $lnameError = "";
               if(isset($_SESSION['lnameError'])) {
-                $lnameError = $_SESSION['lnameError']; 
+                $lnameError = $_SESSION['lnameError'];
+                unset($_SESSION['lnameError']);
               }
               echo $lnameError;
               ?>
@@ -105,7 +108,8 @@ session_start();
               <?php
               $emailError = "";
               if(isset($_SESSION['emailError'])) {
-                $emailError = $_SESSION['emailError']; 
+                $emailError = $_SESSION['emailError'];
+                unset($_SESSION['emailError']);
               }
               echo $emailError;
               ?>
@@ -117,7 +121,8 @@ session_start();
               <?php
               $passwordError = "";
               if(isset($_SESSION['passwordError'])) {
-                $passwordError = $_SESSION['passwordError']; 
+                $passwordError = $_SESSION['passwordError'];
+                unset($_SESSION['passwordError']);
               }
               echo $passwordError;
               ?>
@@ -129,7 +134,8 @@ session_start();
               <?php
               $pnumberError = "";
               if(isset($_SESSION['pnumberError'])) {
-                $pnumberError = $_SESSION['pnumberError']; 
+                $pnumberError = $_SESSION['pnumberError'];
+                unset($_SESSION['pnumberError']);
               }
               echo $pnumberError;
               ?>
@@ -141,7 +147,8 @@ session_start();
               <?php
               $ageError = "";
               if(isset($_SESSION['ageError'])) {
-                $ageError = $_SESSION['ageError']; 
+                $ageError = $_SESSION['ageError'];
+                unset($_SESSION['ageError']);
               }
               echo $ageError;
               ?>
@@ -156,10 +163,12 @@ session_start();
               $accountCreated = "";
               if(isset($_SESSION['emailExistsError'])) {
                 $emailExistsError = $_SESSION['emailExistsError'];
+                unset($_SESSION['emailExistsError']);
               }
               if(isset($_SESSION['accountCreated'])) {
-                
+
                 $accountCreated = $_SESSION['accountCreated'];
+                unset($_SESSION['accountCreated']);
               }
               echo $accountCreated;
               echo $emailExistsError;

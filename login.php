@@ -25,13 +25,13 @@ if(isset($_POST['submit'])) {
         $_SESSION['email'] = $email;
         echo ("<script type='text/javascript'>
         window.alert('Du har loggat in!');
-        window.location = 'index.html';
+        window.location = 'book.html';
         </script>");
         exit();
     } else {
         echo ("<script type='text/javascript'>
         window.alert('Fel användarnamn eller lösenord!');
-        window.location = 'index.html';
+        window.location = 'index.php';
         </script>");
         exit();
     }
