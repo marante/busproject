@@ -1,7 +1,7 @@
 body {
-    background-image: url("bg2.jpg");
-    background-repeat: no-repeat;
-    background-color: #e9ebee;
+  background-image: url("bg2.jpg");
+  background-repeat: no-repeat;
+  background-color: #e9ebee;
 }
 
 .center {
@@ -26,10 +26,11 @@ div.panelbox {
 }
 
 div.transbox p {
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: 700;
   line-height: 22px;
-  color: #e2e2e2;;
+  color: #e2e2e2;
+  ;
   font-size: 16px;
 }
 
@@ -48,15 +49,16 @@ div.transbox {
   text-align: center;
 }
 
-.navbar-nav > li > a, .navbar-brand {
-    padding-top:40px !important;
-    padding-bottom:0 !important;
-    height: 100px;
-    font-size: 25px;
+.navbar-nav > li > a,
+.navbar-brand {
+  padding-top: 40px !important;
+  padding-bottom: 0 !important;
+  height: 100px;
+  font-size: 25px;
 }
 
 .navbar {
-  min-height:100px !important;
+  min-height: 100px !important;
 }
 
 #logo {
