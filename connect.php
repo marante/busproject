@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli("localhost", "root", "", "busproject");
+$mysqli = new mysqli("localhost", "csgofree_kemkoi", "srslyno123", "csgofree_busproject");
 
 /* check mysqliection */
 if ($mysqli->connect_errno)
