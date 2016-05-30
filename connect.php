@@ -1,5 +1,8 @@
 <?php
 
+ini_set("display_errors", true);
+error_reporting( E_ALL );
+
 $mysqli = new mysqli("localhost", "root", "", "busproject");
 // $mysqli = new mysqli("localhost", "csgofree_kemkoi", "srslyno123", "csgofree_busproject");
 

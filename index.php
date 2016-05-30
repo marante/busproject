@@ -1,4 +1,8 @@
 <?php
+
+ini_set("display_errors", true);
+error_reporting( E_ALL );
+
 session_start();
 ?>
 
@@ -20,7 +24,7 @@ session_start();
     <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
         <a id="logo" href="index.php"><img src="images/logo1.png" /></a>
-        <li><a href="book.html">Boka</a></li>
+        <li><a href="book.php">Boka</a></li>
         <li><a href="#">Resemål</a></li>
       </ul>
     </nav>
