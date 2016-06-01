@@ -109,21 +109,48 @@ include('connect.php');
       <!-- Resultform -->
           <div class="col-xs-5 col-xs-offset-1">
             <div class="panel panel-default panelbox">
-              <div class="panel-body">
+              <div class="panel-body center">
 
                 <h3 class="center">Resultat</h3>
+
+
                 <?php
                 $result = $_SESSION['resultArray'];
                 foreach ($result as $var) {
-                    ?> <h3> <?php echo "\n", $var['fromCity'], "\t\t", $var['toCity']; ?> </h3>
-
+                  ?>
+                  <table class="table table-inverse table-lines">
+                    <thead>
+                      <tr>
+                        <td><b>Från</b></td>
+                        <td><b>Till</b></td>
+                      </tr>
+                      <tr>
+                        <td><?php echo $var['fromCity']; ?> </td>
+                        <td><?php echo $var['toCity']; ?> </td>
+                      </tr>
+                      <tr>
+                        <td><b>Avgångstid</b></td>
+                        <td><b>Ankomsttid:</b></td>
+                      </tr>
+                      <tr>
+                        <td> <?php echo $var['depart_time']; ?> </td>
+                        <td> <?php echo $var['arrival_time']; ?> </td>
+                      </tr>
+                      <tr>
+                        <td><b>Antal lediga platser</b></td>
+                      </tr>
+                      <tr>
+                        <td> <?php echo ($var['max_passengers'] - $var['current_passengers']); ?> </td>
+                      </tr>
+                    </table>
+                    <form method="post" action="confirmBooking.php">
+                      <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Boka resa">
+                    </form>
                     <?php
-                    echo "\n", $var['depart_time'], "\t\t", $var['arrival_time'],
-                                 "\t\t", $var['max_passengers'], "\t\t" ,
-                                 $var['current_passengers'];
+                }
 
-                    }
-                ?>
+                 ?>
+
               </div>
              </div>
           </div>

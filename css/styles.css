@@ -12,6 +12,10 @@ body {
   color: red;
 }
 
+.table-lines td{
+  border-top: none !important;
+}
+
 .success {
   color: green;
 }

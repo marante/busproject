@@ -2,6 +2,10 @@
 <?php
 session_start();
 include('connect.php');
+
+// if(isset($_SESSION['email'])) {
+//     $loginSession = $_SESSION['email'];
+// }
 ?>
 <html>
 
@@ -61,6 +65,7 @@ include('connect.php');
                 ?>
 
               </select>
+              <!-- <?php echo $loginSession; ?> -->
               </div>
 
               <div class="form-group">

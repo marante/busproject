@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ini_set("display_errors", true);
 error_reporting( E_ALL );
@@ -21,12 +22,8 @@ if(isset($_POST['submit'])) {
     }
 
     if(password_verify($password, $pwdFromDB)) {
-        $_SESSION['valid'] = true;
         $_SESSION['email'] = $email;
-        echo ("<script type='text/javascript'>
-        window.alert('Du har loggat in!');
-        window.location = 'book.html';
-        </script>");
+        header("Location:book.php");
         exit();
     } else {
         echo ("<script type='text/javascript'>
