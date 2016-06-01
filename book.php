@@ -95,6 +95,19 @@ include('connect.php');
               </div>
 
               <div class="form-group">
+                <label for="exampleInputPassword1">Vecka</label>
+                  <select class="form-control" id="sel1" name="departureCity">
+                    <?php
+                    for ($i = 1; $i < 53; $i++) {
+                      ?>
+                      <option> <?php echo $i ?> </option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+              </div>
+
+              <div class="form-group">
                 <label for="exampleInputPassword1">Avgångstid</label>
                 <div class='input-group date' id='datetimepicker1' name="dateOfTrip">
                   <input type='text' class="form-control" name="dateOfTrip"/>
