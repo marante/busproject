@@ -29,9 +29,10 @@ include('connect.php');
     </ul>
   </nav>
 
+  <!-- Bookingform -->
   <div class="container">
     <div class="row">
-      <div class="col-xs-4 col-xs-offset-3 login">
+      <div class="col-xs-4 login">
         <div class="panel panel-default panelbox">
           <div class="panel-body">
             <h3>Bokning</h3>
@@ -99,21 +100,33 @@ include('connect.php');
                 </div>
               </div>
               <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Sök resa">
-              <span class="error">
-                  <?php
-                  $noResults = "";
-                  if(isset($_SESSION['noResults'])) {
-                    $noResults = $_SESSION['noResults'];
-                    unset($_SESSION['noResults']);
-                  }
-                  echo $noResults;
-                  ?>
-                  </span>
             </form>
 
           </div>
         </div>
       </div>
+
+      <!-- Resultform -->
+          <div class="col-xs-5 col-xs-offset-1">
+            <div class="panel panel-default panelbox">
+              <div class="panel-body">
+
+                <h3 class="center">Resultat</h3>
+                <?php
+                $result = $_SESSION['resultArray'];
+                foreach ($result as $var) {
+                    ?> <h3> <?php echo "\n", $var['fromCity'], "\t\t", $var['toCity']; ?> </h3>
+
+                    <?php
+                    echo "\n", $var['depart_time'], "\t\t", $var['arrival_time'],
+                                 "\t\t", $var['max_passengers'], "\t\t" ,
+                                 $var['current_passengers'];
+
+                    }
+                ?>
+              </div>
+             </div>
+          </div>
     </div>
   </div>
   <script type="text/javascript">
