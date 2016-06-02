@@ -4,6 +4,8 @@
   error_reporting( E_ALL );
   include('connect.php');
 
+  $year = 2016;
+  $week = $_SESSION['weekSession'];
 
   if(isset($_POST['submit'])) {
 
@@ -14,7 +16,16 @@
   }
 
   if(isset($_SESSION['email'])) {
-      $loginSession = $_SESSION['email'];
+    $loginSession = $_SESSION['email'];
+  }
+
+  if(!isset($_SESSION['email'])) {
+    unset($_SESSION['email']);
+    echo ("<script type='text/javascript'>
+    window.location = 'index.php';
+    window.alert('Du måste vara inloggad för att genomföra en bokning!');
+    </script>");
+
   }
 
   $sqlEmail = ("SELECT person_id
@@ -74,10 +85,10 @@
             die ("Mysql Error: " . $mysqli->error);
         }
 
-        $currentTime = date('Y-m-d', time());
-
   $sqlBooking = ("INSERT INTO bookings(booking_date, trip_id, person_id)
         VALUES(?, ?, ?)");
+
+        $currentTime = date('Y-m-d', time());
 
         if ($stmt = $mysqli->prepare($sqlBooking)) {
           $stmt->bind_param('sss', $currentTime, $tripID, $personID);
@@ -91,8 +102,8 @@
          exit();
         } else if ($stmt === FALSE) {
           echo ("<script type='text/javascript'>
-          window.location = 'confirmBooking.php';
-          window.alert('Din bokning är genomförd, tack för att du använder Blomstermåla Buss!');
+          window.location = 'foundBookings.php';
+          window.alert('Din bokning är INTE genomförd, tack för att du använder Blomstermåla Buss!');
           </script>");
          exit();
         }

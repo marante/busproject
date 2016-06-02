@@ -11,7 +11,14 @@ if(isset($_GET['submit'])) {
     global $mysqli;
     $fromCity = $_GET['departureCity'];
     $toCity = $_GET['arrivalCity'];
+
     $date = $_GET['dateOfTrip'];
+    $_SESSION['dateSession'] = $date;
+
+    $week = $_GET['weekOfTrip'];
+    $_SESSION['weekSession'] = $week;
+
+    $year = 2016;
 
     $fromCityID = 0;
     $toCityID = 0;
@@ -48,7 +55,11 @@ if(isset($_GET['submit'])) {
                             die ("Mysql Error: " . $mysqli->error);
                                 }
 
-    $sql = ("SELECT c1.name, c2.name, trips.depart_time, trips.arrival_time, trips.max_passengers,
+
+    $sql = ("SELECT c1.name, c2.name,
+                    trips.depart_time,
+                    trips.arrival_time,
+                    trips.max_passengers,
                     trips.current_passengers
         	FROM trips
         	INNER JOIN arrivals
@@ -65,40 +76,83 @@ if(isset($_GET['submit'])) {
         	GROUP BY c1.name");
 
 
-            if ($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param('sss', $fromCityID, $toCityID, $date);
+            if ($week == "Välj vecka") {
+                if ($stmt = $mysqli->prepare($sql)) {
+                    $stmt->bind_param('sss', $fromCityID, $toCityID, $date);
+                    echo $fromCityID, $toCityID, $date;
 
-                $stmt->bind_result($ans['fromCity'], $ans['toCity'],
-                                    $ans['depart_time'], $ans['arrival_time'],
-                                    $ans['max_passengers'], $ans['current_passengers']);
+                    $stmt->bind_result($ans['fromCity'], $ans['toCity'],
+                                        $ans['depart_time'], $ans['arrival_time'],
+                                        $ans['max_passengers'], $ans['current_passengers']);
 
-                $stmt->execute();
-                $stmt->store_result();
-                $countRows = $stmt->num_rows;
-                if ($countRows > 0) {
-                    for ($col=0; $col < $countRows; $col++) {
-                        $stmt->data_seek($col);
-                        $stmt->fetch();
-                        foreach ($ans as $key => $value) {
-                            $result[$col][$key] = $value;
+                    $stmt->execute();
+                    $stmt->store_result();
+                    $countRows = $stmt->num_rows;
+                    if ($countRows > 0) {
+                        for ($col=0; $col < $countRows; $col++) {
+                            $stmt->data_seek($col);
+                            $stmt->fetch();
+                            foreach ($ans as $key => $value) {
+                                $result[$col][$key] = $value;
+                            }
                         }
-                    }
-                        $_SESSION['resultArray'] = $result;
-                        header("Location:foundBookings.php");
-                        $stmt->close();
+                            $_SESSION['resultArray'] = $result;
+                            header("Location:foundBookings.php");
+                            $stmt->close();
+                        }
 
+                        else if ($countRows < 1 && $day == 7) {
+                            $_SESSION['noResults'] = "Inga avgångar vid angiven tid";
+                            header("Location:book.php");
+                            exit();
+                        }
+
+                        else if ($stmt === FALSE) {
+                            die ("Mysql Error: " . $mysqli->error);
+                            }
                     }
 
-                    else if ($countRows < 1) {
-                        $_SESSION['noResults'] = "Inga avgångar vid angiven tid";
-                        header("Location:book.php");
-                        exit();
-                    }
+            } else {
+                for ($day = 1; $day <=7; $day++) {
 
-                    else if ($stmt === FALSE) {
-                        die ("Mysql Error: " . $mysqli->error);
+                    $date = date(20 . 'y-m-d', strtotime($year . "W" . $week . $day));
+
+                    if ($stmt = $mysqli->prepare($sql)) {
+                        $stmt->bind_param('sss', $fromCityID, $toCityID, $date);
+
+                        $stmt->bind_result($ans['fromCity'], $ans['toCity'],
+                                            $ans['depart_time'], $ans['arrival_time'],
+                                            $ans['max_passengers'], $ans['current_passengers']);
+
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $countRows = $stmt->num_rows;
+                        if ($countRows > 0) {
+                            for ($col=0; $col < $countRows; $col++) {
+                                $stmt->data_seek($col);
+                                $stmt->fetch();
+                                foreach ($ans as $key => $value) {
+                                    $result[$col][$key] = $value;
+                                }
+                            }
+                                $_SESSION['resultArray'] = $result;
+                                header("Location:foundBookings.php");
+                                $stmt->close();
+                                break;
+                            }
+
+                            else if ($countRows < 1 && $day == 7) {
+                                $_SESSION['noResults'] = "Inga avgångar vid angiven tid";
+                                header("Location:book.php");
+                                exit();
+                            }
+
+                            else if ($stmt === FALSE) {
+                                die ("Mysql Error: " . $mysqli->error);
+                                }
                         }
                 }
+            }
 
         $mysqli->close();
 

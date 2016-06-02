@@ -31,6 +31,19 @@ include('connect.php');
       <li><a href="book.php">Boka</a></li>
       <li><a href="#">Resemål</a></li>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="pright"><a href="#">
+          <?php if(isset($_SESSION['email']))
+          { ?>
+          <form method="post" action="logout.php">
+              <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Logga ut">
+          </form>
+          <?php
+          } else {
+              echo "Inte inloggad";
+          } ?></a></li>
+    </ul>
   </nav>
 
   <div class="container">
@@ -96,7 +109,8 @@ include('connect.php');
 
               <div class="form-group">
                 <label for="exampleInputPassword1">Vecka</label>
-                  <select class="form-control" id="sel1" name="departureCity">
+                  <select class="form-control" id="sel1" name="weekOfTrip">
+                      <option>Välj vecka</option>
                     <?php
                     for ($i = 1; $i < 53; $i++) {
                       ?>

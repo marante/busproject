@@ -27,87 +27,23 @@ include('connect.php');
       <li><a href="book.php">Boka</a></li>
       <li><a href="#">Resemål</a></li>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="pright"><a href="#">
+          <?php if(isset($_SESSION['email']))
+          { ?>
+          <form method="post" action="logout.php">
+              <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Logga ut">
+          </form>
+          <?php
+          } else {
+              echo "Inte inloggad";
+          } ?></a></li>
+    </ul>
   </nav>
 
-  <!-- Bookingform -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-4 login">
-        <div class="panel panel-default panelbox">
-          <div class="panel-body">
-            <h3>Bokning</h3>
-
-            <form method="get" action="tripfinder.php">
-              <div class="form-group">
-                <label for="sel1">Från</label>
-                <select class="form-control" id="sel1" name="departureCity">
-
-                <?php
-                global $mysqli;
-                $sql = "SELECT name FROM cities ORDER BY name asc";
-                $result = $mysqli->query($sql);
-                if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                ?>
-                            <option>
-                            <?php
-                            echo $row["name"]
-                            ?>
-                            </option>;
-                <?php
-                        }
-                    } else {
-                        echo "0 results";
-                    }
-                ?>
-
-              </select>
-              </div>
-
-              <div class="form-group">
-                <label for="sel1">Till</label>
-                <select class="form-control" id="sel2" name="arrivalCity">
-
-                    <?php
-                    global $mysqli;
-                    $sql = "SELECT name FROM cities ORDER BY name desc";
-                    $result = $mysqli->query($sql);
-                    if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                    ?>
-                                <option>
-                                <?php
-                                echo $row["name"]
-                                ?>
-                                </option>;
-                    <?php
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                    ?>
-
-              </select>
-              </div>
-
-              <div class="form-group">
-                <label for="exampleInputPassword1">Avgångstid</label>
-                <div class='input-group date' id='datetimepicker1' name="dateOfTrip">
-                  <input type='text' class="form-control" name="dateOfTrip"/>
-                  <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                </div>
-              </div>
-              <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Sök resa">
-            </form>
-
-          </div>
-        </div>
-      </div>
-
       <!-- Resultform -->
-          <div class="col-xs-5 col-xs-offset-1">
+          <div class="col-xs-4 col-xs-offset-4">
             <div class="panel panel-default panelbox">
               <div class="panel-body center">
 
@@ -116,6 +52,7 @@ include('connect.php');
 
                 <?php
                 $result = $_SESSION['resultArray'];
+                $week = $_SESSION['weekSession'];
                 foreach ($result as $var) {
                   ?>
                   <table class="table table-inverse table-lines">
@@ -130,16 +67,28 @@ include('connect.php');
                       </tr>
                       <tr>
                         <td><b>Avgångstid</b></td>
-                        <td><b>Ankomsttid:</b></td>
+                        <td><b>Ankomsttid</b></td>
                       </tr>
                       <tr>
                         <td> <?php echo $var['depart_time']; ?> </td>
                         <td> <?php echo $var['arrival_time']; ?> </td>
                       </tr>
                       <tr>
+                        <td><b>Resevecka</b></td>
                         <td><b>Antal lediga platser</b></td>
                       </tr>
                       <tr>
+                        <td> Vecka: <?php
+                        if($week == "Välj vecka") {
+                            $dateTime = $_SESSION['dateSession'];
+                            $ddate = $dateTime;
+                            $date = new DateTime($ddate);
+                            $week = $date->format("W");
+                            echo $week;
+                        } else {
+                            echo $week;
+                        }
+                        ?> </td>
                         <td> <?php echo ($var['max_passengers'] - $var['current_passengers']); ?> </td>
                       </tr>
                     </table>
