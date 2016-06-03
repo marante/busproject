@@ -2,10 +2,6 @@
 <?php
 session_start();
 include('connect.php');
-
-// if(isset($_SESSION['email'])) {
-//     $loginSession = $_SESSION['email'];
-// }
 ?>
 <html>
 
@@ -29,7 +25,7 @@ include('connect.php');
     <ul class="nav navbar-nav">
       <a id="logo" href="index.php"><img src="images/logo1.png" /></a>
       <li><a href="book.php">Boka</a></li>
-      <li><a href="#">Resemål</a></li>
+      <li><a href="profile.php">Profil</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
